@@ -1,0 +1,44 @@
+
+{% extends '_base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h6 class="display-4">İha Kontrol Merkezi</h6>
+        <hr />
+        <a href="/create" class="btn btn-sm btn-primary">Yeni İha Ekle</a>
+        <table class="table table-bordered mt-2">
+            <thead>
+                <tr>
+                    <th width="30">ID</th>
+                    <th width="100">Resim</th>
+                    <th>Marka</th>
+                    <th>Model</th>
+                    <th>Açıklama</th>
+                    <th width="140">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for iha in ihalist %}
+                        <tr>
+                            <td>{{iha.id}}</td>
+                            <td><img src="/static/images/{{iha.img}}" width="80" /></td>
+                            <td>{{iha.brand}}</td>
+                            <td>{{iha.modelname}}</td>
+                            <td>{{iha.description}}</td>
+                            <td>
+                                <a href="/edit/{{iha.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                                <form method="post" class="d-inline" >
+                                    {% csrf_token %}
+                                    <input type="hidden" name="id" value="{{iha.id}}" />
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

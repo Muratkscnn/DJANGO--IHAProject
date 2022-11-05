@@ -1,0 +1,48 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5>Search</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" placeholder="Markaya Göre Ara.." />
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-sm btn-danger w-100">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            {% for iha in ihalist %}
+                <div class="col-md-4">
+                    <div class="card mb-2" style="min-height: 400px;">
+                        <div class="card-img p-2 text-md-center">
+                            <img src="/static/images/{{iha.img}}"  class="img-fluid"  style="height: 150px;"/>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{iha.brand}}-{{iha.modelname}}</h5>
+                            <small class="text-muted" style="height: 150px;">
+                                {{iha.description}}
+                            </small>
+                            <div class="card-footer bg-white text-center d-flex justify-content-around p-1">
+                                <a class="btn btn-primary" href="/detail/{{iha.id}}">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

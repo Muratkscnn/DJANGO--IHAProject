@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% block content %}
+
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="/static/images/{{iha.img}}" class="img-fluid" alt="Alternate Text" />
+        </div>
+        <div class="col-md-10">
+            <h1 class="mb-3">{{iha.brand}}-{{iha.modelname}}</h1>
+            <hr />
+                Kategori: {{iha.categories}}
+            <div class="mb-3">
+                <p >Açıklama: {{iha.description}} </p>
+                <div class="mb-3">
+                    <p>Maksimum Kalkış Ağırlığı:{{iha.weight}} kg</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
